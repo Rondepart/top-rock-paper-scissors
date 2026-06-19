@@ -5,7 +5,7 @@ document.querySelector("#choices").addEventListener("click", function(e) {
     if (!e.target.matches("button")) return;
 
     const playerChoice = e.target.value;
-    playRound(playerChoice, getComputerChoice());
+    playGame(playerChoice);
 }) 
 
 const gameResult = document.querySelector("#result");
@@ -22,11 +22,6 @@ function getComputerChoice() {
         return "Scissors";
     }
 }
-
-// function getPlayerChoice() {
-//     let userInput = prompt("Enter Rock, Paper, or Scissors");
-//     return userInput;
-// }
 
 function playRound(playerChoice, computerChoice) {
     // const playerChoice = playerChoice.toLowerCase().replace(/\s+/g, '');
@@ -66,30 +61,24 @@ function playRound(playerChoice, computerChoice) {
         scoreBoard.textContent = "Player: " + playerScore + " | Computer: " + computerScore;
     } else {
         console.log("You entered an invalid choice");
+        gameResult.textContent = "You entered an invalid choice";
         scoreBoard.textContent = "Player: " + playerScore + " | Computer: " + computerScore;
     }
 } 
 
-function playGame() {
-    // for (let roundCount = 0; roundCount<5; roundCount++) {
-    //     const humanSelection = getPlayerChoice();
-    //     const computerSelection = getComputerChoice();
-    //     playRound(humanSelection, computerSelection);
-    // }
-        
-    if (playerScore === computerScore) {
-        console.log("Tie!!! you scored: " + playerScore + " | Computer Scored: " + computerScore);
+function playGame(playerChoice) {
+    playRound(playerChoice, getComputerChoice());
 
-    } else if (playerScore < computerScore) {
-        console.log("GGWP You lost you scored: " + playerScore + " | Computer Scored: " + computerScore);
-
-    } else {
-        console.log("GGWP You win you scored: " + playerScore + " | Computer Scored: " + computerScore);
+    if (playerScore === 5) {
+        gameResult.textContent = "Well played, you win the game";
+        resetGame();
+    } else if (computerScore === 5) {
+        gameResult.textContent = "You lost lmfao";
+        resetGame();
     }
+}
 
+function resetGame() {
     playerScore = 0;
     computerScore = 0;
 }
-
-
-playGame();
