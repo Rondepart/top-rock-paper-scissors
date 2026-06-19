@@ -8,6 +8,9 @@ document.querySelector("#choices").addEventListener("click", function(e) {
     playRound(playerChoice, getComputerChoice());
 }) 
 
+const gameResult = document.querySelector("#result");
+
+
 function getComputerChoice() {
     let rndmNum = Math.floor(Math.random() * 3) + 1;
 
@@ -30,30 +33,37 @@ function playRound(playerChoice, computerChoice) {
     // const playerChoice = playerChoice.toLowerCase().replace(/\s+/g, '');
 
     if (playerChoice === computerChoice){
+        gameResult.textContent = "Tied you and the computer choiced " + computerChoice + ".";
         console.log("Tied you and the computer choiced " + computerChoice + ".");
 
     } else if (playerChoice === "Rock" && computerChoice === "Scissors") {
         playerScore++;
+        gameResult.textContent = "You win, computer choose Scissors.";
         console.log("You win, computer choose Scissors.");
 
     } else if (playerChoice === "Rock" && computerChoice === "Paper") {
         computerScore++;
+        gameResult.textContent = "You lose, computer choose Paper.";
         console.log("You lose, computer choose Paper.");
 
     } else if (playerChoice === "Paper" && computerChoice === "Scissors") {
         computerScore++;
+        gameResult.textContent = "You lose, computer choose Scissors.";
         console.log("You lose, computer choose Scissors.");
 
     } else if (playerChoice === "Paper" && computerChoice === "Rock") {
         playerScore++;
+        gameResult.textContent = "You win, computer choose Rock.";
         console.log("You win, computer choose Rock.");
 
     } else if (playerChoice === "Scissors" && computerChoice === "Rock") {
         computerScore++;
+        gameResult.textContent = "You lose, computer choose Rock.";
         console.log("You lose, computer choose Rock.");
 
     } else if (playerChoice === "Scissors" && computerChoice === "Paper") {
         playerScore++;
+        gameResult.textContent = "You win, computer choose Paper.";
         console.log("You win, computer choose Paper.");
     } else {
         console.log("You entered an invalid choice");
