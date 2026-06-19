@@ -9,7 +9,7 @@ document.querySelector("#choices").addEventListener("click", function(e) {
 }) 
 
 const gameResult = document.querySelector("#result");
-
+const scoreBoard = document.querySelector("#score");
 
 function getComputerChoice() {
     let rndmNum = Math.floor(Math.random() * 3) + 1;
@@ -21,55 +21,53 @@ function getComputerChoice() {
     } else if (rndmNum === 3) {
         return "Scissors";
     }
-
 }
 
-function getPlayerChoice() {
-    let userInput = prompt("Enter Rock, Paper, or Scissors");
-    return userInput;
-}
+// function getPlayerChoice() {
+//     let userInput = prompt("Enter Rock, Paper, or Scissors");
+//     return userInput;
+// }
 
 function playRound(playerChoice, computerChoice) {
     // const playerChoice = playerChoice.toLowerCase().replace(/\s+/g, '');
 
     if (playerChoice === computerChoice){
         gameResult.textContent = "Tied you and the computer choiced " + computerChoice + ".";
-        console.log("Tied you and the computer choiced " + computerChoice + ".");
+        scoreBoard.textContent = "Player: " + playerScore + " | Computer: " + computerScore;
 
     } else if (playerChoice === "Rock" && computerChoice === "Scissors") {
         playerScore++;
         gameResult.textContent = "You win, computer choose Scissors.";
-        console.log("You win, computer choose Scissors.");
+        scoreBoard.textContent = "Player: " + playerScore + " | Computer: " + computerScore;
 
     } else if (playerChoice === "Rock" && computerChoice === "Paper") {
         computerScore++;
         gameResult.textContent = "You lose, computer choose Paper.";
-        console.log("You lose, computer choose Paper.");
+        scoreBoard.textContent = "Player: " + playerScore + " | Computer: " + computerScore;
 
     } else if (playerChoice === "Paper" && computerChoice === "Scissors") {
         computerScore++;
         gameResult.textContent = "You lose, computer choose Scissors.";
-        console.log("You lose, computer choose Scissors.");
+        scoreBoard.textContent = "Player: " + playerScore + " | Computer: " + computerScore;
 
     } else if (playerChoice === "Paper" && computerChoice === "Rock") {
         playerScore++;
         gameResult.textContent = "You win, computer choose Rock.";
-        console.log("You win, computer choose Rock.");
+        scoreBoard.textContent = "Player: " + playerScore + " | Computer: " + computerScore;
 
     } else if (playerChoice === "Scissors" && computerChoice === "Rock") {
         computerScore++;
         gameResult.textContent = "You lose, computer choose Rock.";
-        console.log("You lose, computer choose Rock.");
+        scoreBoard.textContent = "Player: " + playerScore + " | Computer: " + computerScore;
 
     } else if (playerChoice === "Scissors" && computerChoice === "Paper") {
         playerScore++;
         gameResult.textContent = "You win, computer choose Paper.";
-        console.log("You win, computer choose Paper.");
+        scoreBoard.textContent = "Player: " + playerScore + " | Computer: " + computerScore;
     } else {
         console.log("You entered an invalid choice");
+        scoreBoard.textContent = "Player: " + playerScore + " | Computer: " + computerScore;
     }
-
-    // return console.log(playerChoice + computerChoice);
 } 
 
 function playGame() {
